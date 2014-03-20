@@ -2,7 +2,7 @@
 This repository contains configuration files for building a 
 Docker (http://docker.io) image for the Subsonic media streamer.
 
-## Noteworthy:
+## Noteworthy
 
 * Subsonic 4.9 (http://www.subsonic.org)
 * Debian/wheezy
@@ -13,6 +13,18 @@ Docker (http://docker.io) image for the Subsonic media streamer.
 ```shell
 $ docker build -t <your-name>/debian-subsonic debian-subsonic
 ```
+
+## Get a pre-built image
+
+A current image is available as a trusted build from the Docker index:
+
+```shell
+$ docker pull  mschuerig/debian-subsonic
+```
+
+The repository page is at
+https://index.docker.io/u/mschuerig/debian-subsonic/
+
 
 ## Run a container with this image
 
