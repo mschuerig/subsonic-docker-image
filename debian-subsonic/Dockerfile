@@ -2,7 +2,9 @@ FROM debian:wheezy
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN useradd --home /var/subsonic -M subsonic
+# Create a new user account with UID/GID at least 10000.
+# This makes it easier to keep host and docker accounts apart.
+RUN useradd --home /var/subsonic -M subsonic -K UID_MIN=10000 -K GID_MIN=10000
 RUN mkdir -p /var/subsonic && chown subsonic /var/subsonic && chmod 0770 /var/subsonic
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
