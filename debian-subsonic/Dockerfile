@@ -17,6 +17,14 @@ ADD http://downloads.sourceforge.net/project/subsonic/subsonic/4.9/subsonic-4.9.
 
 RUN dpkg -i /tmp/subsonic-4.9.deb && rm -f /tmp/*.deb
 
+# Create hardlinks to the transcoding binaries.
+# This way we can mount a volume over /var/subsonic.
+# Apparently, Subsonic does not accept paths in the Transcoding settings.
+# If you mount a volume over /var/subsonic, create symlinks
+# <host-dir>/var/subsonic/transcode/ffmpeg -> /usr/local/bin/ffmpeg
+# <host-dir>/var/subsonic/transcode/lame -> /usr/local/bin/lame
+RUN ln /var/subsonic/transcode/ffmpeg /var/subsonic/transcode/lame /usr/local/bin
+
 ADD startup.sh /startup.sh
 
 EXPOSE 4040
