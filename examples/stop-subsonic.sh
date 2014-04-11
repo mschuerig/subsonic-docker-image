@@ -3,15 +3,17 @@
 image="mschuerig/debian-subsonic"
 music="/data/music"
 data="/var/local/subsonic"
-subsonicport=4040
-hostport=4040
+http_subsonicport=4040
+http_hostport=4040
+https_subsonicport=4443
+https_hostport=4443
 
 container_exposing_port() {
   docker ps --no-trunc \
   | awk "/->${1}\\/tcp/ { print \$1; exit }"
 }
 
-running=$( container_exposing_port "$subsonicport" )
+running=$( container_exposing_port "$http_subsonicport" )
 if [ -n "$running" ]; then
   echo "Stopping Subsonic container..." >&2
   docker stop "$running"

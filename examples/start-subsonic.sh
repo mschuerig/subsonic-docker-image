@@ -3,8 +3,10 @@
 image="mschuerig/debian-subsonic"
 music="/data/music"
 data="/var/local/subsonic"
-subsonicport=4040
-hostport=4040
+http_subsonicport=4040
+http_hostport=4040
+https_subsonicport=4443
+https_hostport=4443
 
 container_exposing_port() {
   docker ps --no-trunc \
@@ -17,7 +19,7 @@ container_for_image() {
 }
 
 
-running=$( container_exposing_port "$subsonicport" )
+running=$( container_exposing_port "$http_subsonicport" )
 if [ -n "$running" ]; then
   echo "Subsonic container is already running" >&2
 else
@@ -29,10 +31,12 @@ else
     echo "Freshly starting Subsonic container" >&2
     docker run \
       --detach \
-      --publish ${hostport}:${subsonicport} \
+      --publish ${http_hostport}:${http_subsonicport} \
+      --publish ${https_hostport}:${https_subsonicport} \
       --volume "${music}:/var/music:ro" \
       --volume "${data}:/var/subsonic" \
-      "${image}"
+      "${image}" \
+      --https-port=$https_subsonicport
   fi
 fi
 
