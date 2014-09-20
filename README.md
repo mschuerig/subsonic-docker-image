@@ -6,7 +6,7 @@ Docker (http://docker.io) image for the Subsonic media streamer.
 
 * Subsonic 4.9 (http://www.subsonic.org)
 * Debian/wheezy
-* Runs as user subsonic
+* Runs as user subsonic (UID 10000)
 
 ## Build your own image
 
@@ -36,3 +36,12 @@ $ docker run \
   <your-name>/debian-subsonic
 
 ```
+
+## Pitfalls
+
+The host music directory mounted into the container at /var/music must be
+readable by user subsonic (UID 10000).
+
+If you use a volume for the container's /var/subsonic, the host directory
+mounted there must have read-write-execute permissions for user
+subsonic (UID 10000).
