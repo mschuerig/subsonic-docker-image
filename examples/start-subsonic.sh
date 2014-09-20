@@ -30,6 +30,7 @@ else
   else
     echo "Freshly starting Subsonic container" >&2
     docker run \
+      --name subsonic \
       --detach \
       --publish ${http_hostport}:${http_subsonicport} \
       --publish ${https_hostport}:${https_subsonicport} \
