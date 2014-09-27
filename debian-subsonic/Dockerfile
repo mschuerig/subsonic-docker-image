@@ -11,11 +11,11 @@ RUN useradd --home /var/subsonic -M subsonic -K UID_MIN=10000 -K GID_MIN=10000 &
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     apt-get update && \
+    apt-get dist-upgrade --yes --no-install-recommends --no-install-suggests && \
     apt-get install --yes --no-install-recommends --no-install-suggests openjdk-7-jre-headless locales && \
     apt-get clean
 
 ADD http://downloads.sourceforge.net/project/subsonic/subsonic/4.9/subsonic-4.9.deb?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsubsonic%2Ffiles%2Fsubsonic%2F4.9%2Fsubsonic-4.9.deb%2Fdownload%3Fuse_mirror%3Dautoselect&ts=1395340045&use_mirror=garr /tmp/subsonic-4.9.deb
-
 RUN dpkg -i /tmp/subsonic-4.9.deb && rm -f /tmp/*.deb
 
 # Create hardlinks to the transcoding binaries.
@@ -26,7 +26,9 @@ RUN dpkg -i /tmp/subsonic-4.9.deb && rm -f /tmp/*.deb
 # <host-dir>/var/subsonic/transcode/lame -> /usr/local/bin/lame
 RUN ln /var/subsonic/transcode/ffmpeg /var/subsonic/transcode/lame /usr/local/bin
 
-ADD startup.sh /startup.sh
+VOLUME /var/subsonic
+
+COPY startup.sh /startup.sh
 
 EXPOSE 4040
 
