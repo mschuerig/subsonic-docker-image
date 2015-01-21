@@ -36,6 +36,7 @@ else
       --publish ${https_hostport}:${https_subsonicport} \
       --volume "${music}:/var/music:ro" \
       --volume "${data}:/var/subsonic" \
+      --restart=always \
       "${image}" \
       --https-port=$https_subsonicport
   fi
