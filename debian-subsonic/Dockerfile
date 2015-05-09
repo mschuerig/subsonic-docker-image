@@ -4,11 +4,6 @@ MAINTAINER michael@schuerig.de
 
 ENV DEBIAN_FRONTEND noninteractive
 
-# Create a new user account with UID/GID at least 10000.
-# This makes it easier to keep host and docker accounts apart.
-RUN useradd --home /var/subsonic -M subsonic -K UID_MIN=10000 -K GID_MIN=10000 && \
-    mkdir -p /var/subsonic && chown subsonic /var/subsonic && chmod 0770 /var/subsonic
-
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     apt-get update && \
     apt-get dist-upgrade --yes --no-install-recommends --no-install-suggests && \
@@ -33,8 +28,6 @@ VOLUME /var/subsonic
 COPY startup.sh /startup.sh
 
 EXPOSE 4040
-
-USER subsonic
 
 CMD []
 ENTRYPOINT ["/startup.sh"]
