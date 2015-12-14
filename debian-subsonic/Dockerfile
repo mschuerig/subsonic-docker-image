@@ -15,7 +15,7 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     apt-get install --yes --no-install-recommends --no-install-suggests openjdk-7-jre-headless locales && \
     apt-get clean
 
-ENV SUBSONIC_VERSION 5.2.1
+ENV SUBSONIC_VERSION 5.3
 
 ADD http://downloads.sourceforge.net/project/subsonic/subsonic/$SUBSONIC_VERSION/subsonic-$SUBSONIC_VERSION.deb?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsubsonic%2Ffiles%2Fsubsonic%2F$SUBSONIC_VERSION%2F&ts=1421842428&use_mirror=optimate /tmp/subsonic-$SUBSONIC_VERSION.deb
 RUN dpkg -i /tmp/subsonic-$SUBSONIC_VERSION.deb && rm -f /tmp/*.deb
