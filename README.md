@@ -4,8 +4,8 @@ Docker (http://docker.io) image for the Subsonic media streamer.
 
 ## Noteworthy
 
-* Subsonic 5.3 (http://www.subsonic.org)
-* Debian/wheezy
+* Subsonic 6.0 (http://www.subsonic.org)
+* Debian/jessie
 * Runs as user subsonic (UID 10000)
 
 ## Build your own image
