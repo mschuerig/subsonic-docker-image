@@ -23,7 +23,7 @@ $ docker pull  mschuerig/debian-subsonic
 ```
 
 The repository page is at
-https://index.docker.io/u/mschuerig/debian-subsonic/
+https://hub.docker.com/r/mschuerig/subsonic-docker-image/
 
 
 ## Run a container with this image
