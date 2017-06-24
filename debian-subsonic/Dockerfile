@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 
 MAINTAINER michael@schuerig.de
 
@@ -12,12 +12,12 @@ RUN useradd --home /var/subsonic -M subsonic -K UID_MIN=10000 -K GID_MIN=10000 &
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     apt-get update && \
     apt-get dist-upgrade --yes --no-install-recommends --no-install-suggests && \
-    apt-get install --yes --no-install-recommends --no-install-suggests openjdk-7-jre-headless locales && \
+    apt-get install --yes --no-install-recommends --no-install-suggests openjdk-8-jre-headless locales && \
     apt-get clean
 
-ENV SUBSONIC_VERSION 6.0
+ENV SUBSONIC_VERSION 6.1.1
 
-ADD http://downloads.sourceforge.net/project/subsonic/subsonic/$SUBSONIC_VERSION/subsonic-$SUBSONIC_VERSION.deb?r=http%3A%2F%2Fsourceforge.net%2Fprojects%2Fsubsonic%2Ffiles%2Fsubsonic%2F$SUBSONIC_VERSION%2F&ts=1421842428&use_mirror=optimate /tmp/subsonic-$SUBSONIC_VERSION.deb
+ADD https://s3-eu-west-1.amazonaws.com/subsonic-public/download/subsonic-$SUBSONIC_VERSION.deb /tmp/subsonic-$SUBSONIC_VERSION.deb
 RUN dpkg -i /tmp/subsonic-$SUBSONIC_VERSION.deb && rm -f /tmp/*.deb
 
 # Create hardlinks to the transcoding binaries.
