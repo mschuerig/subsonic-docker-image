@@ -115,6 +115,9 @@ mkdir -p \
 LOG=${SUBSONIC_HOME}/subsonic_sh.log
 truncate -s0 ${LOG}
 
+for tc in ffmpeg lame flac; do
+    type -P $tc && ln -srf "$(type -P $tc)" ${SUBSONIC_HOME}/transcode/
+done
     
 cd /usr/share/subsonic
 
