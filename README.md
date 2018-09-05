@@ -1,4 +1,9 @@
 
+**This project is dormant and dreams of the fjords.
+See [anarcat/debian-airsonic](https://github.com/anarcat/debian-airsonic)
+for a substitute.**
+
+
 This repository contains configuration files for building a 
 Docker (http://docker.io) image for the Subsonic media streamer.
 
